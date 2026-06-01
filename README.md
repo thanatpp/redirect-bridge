@@ -40,11 +40,23 @@ Invalid targets such as `javascript:alert(1)` are rejected.
 
 This section is for project maintainers. End users do not need to deploy their own copy to use the public Redirect Bridge service.
 
-1. Create a new Cloudflare Pages project.
-2. Use this folder as the project root.
-3. Set the build command to empty.
-4. Set the build output directory to `.`.
-5. Deploy.
+Use **Cloudflare Pages**, not Workers.
+
+Cloudflare Pages settings:
+
+```text
+Build command: leave empty
+Build output directory: .
+Deploy command: leave empty
+```
+
+Do not use:
+
+```bash
+npx wrangler deploy
+```
+
+That command is for Cloudflare Workers and will fail because this project has no Worker entry point.
 
 Suggested Cloudflare Pages project name:
 
@@ -56,6 +68,12 @@ You can also deploy with Wrangler:
 
 ```bash
 npx wrangler pages deploy . --project-name redirect-bridge
+```
+
+Or through npm:
+
+```bash
+npm run deploy:pages
 ```
 
 The `_redirects` file contains the fallback rule:

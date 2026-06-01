@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Redirect Bridge - Simple Open Source Redirect Links</title>
+    <meta
+      name="description"
+      content="Redirect Bridge creates simple redirect links for callbacks, localhost flows, demos, and testing. Paste a target URL and copy the generated link."
+    >
+    <meta name="keywords" content="redirect url, open source redirect, callback url, localhost callback, redirect utility">
+    <meta name="robots" content="index,follow">
+    <meta name="author" content="Redirect Bridge contributors">
+    <meta name="theme-color" content="#0f766e">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Redirect Bridge">
+    <meta
+      property="og:description"
+      content="Create simple redirect links for callbacks, local development, demos, and quick testing."
+    >
+    <meta property="og:site_name" content="Redirect Bridge">
+    <meta property="og:image" content="/assets/social-preview.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Redirect Bridge">
+    <meta
+      name="twitter:description"
+      content="Paste a target URL and copy a simple redirect link."
+    >
+    <meta name="twitter:image" content="/assets/social-preview.png">
+    <link rel="canonical" href="/">
+    <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+    <link rel="preload" href="/assets/hero-redirect-flow.png" as="image">
+    <link rel="stylesheet" href="/styles.css">
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebApplication",
+            "name": "Redirect Bridge",
+            "applicationCategory": "DeveloperApplication",
+            "operatingSystem": "Any",
+            "description": "Create simple redirect links for callbacks, local development, demos, and quick testing."
+          },
+          {
+            "@type": "SoftwareSourceCode",
+            "name": "Redirect Bridge",
+            "description": "Open-source code for creating simple redirect links.",
+            "programmingLanguage": ["HTML", "CSS", "JavaScript"],
+            "runtimePlatform": "Cloudflare Pages",
+            "license": "https://opensource.org/license/mit/"
+          }
+        ]
+      }
+    </script>
+    <script src="/script.js" defer></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="/" aria-label="Redirect Bridge home">
+        <span class="brand-mark" aria-hidden="true">R</span>
+        <span>Redirect Bridge</span>
+      </a>
+      <nav aria-label="Main navigation">
+        <a href="#how-it-works">How it works</a>
+        <a href="#use-cases">Use cases</a>
+        <a href="#open-source">Open source</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" aria-live="polite">
+        <div class="hero-copy">
+          <p class="eyebrow">Simple redirect links</p>
+          <h1 id="title">Create a redirect link in seconds.</h1>
+          <p id="message" class="lead">
+            Paste a destination URL and copy a Redirect Bridge link you can use in
+            callbacks, localhost flows, demos, or tests.
+          </p>
+
+          <form class="redirect-form" id="redirect-form">
+            <label for="target-url">Target URL</label>
+            <div class="input-row">
+              <input
+                id="target-url"
+                name="target-url"
+                type="url"
+                inputmode="url"
+                value="https://example.com/callback"
+                autocomplete="url"
+              >
+            </div>
+            <div class="result-row">
+              <code id="generated-url">Your redirect link will appear here</code>
+              <button class="copy-button" id="copy-button" type="button">Copy</button>
+            </div>
+          </form>
+        </div>
+
+        <figure class="hero-asset">
+          <img
+            src="/assets/hero-redirect-flow.png"
+            alt="Minimal 3D redirect flow showing one browser window routing to another"
+            width="1717"
+            height="916"
+          >
+        </figure>
+      </section>
+
+      <section id="how-it-works" class="section">
+        <div class="section-heading">
+          <p class="eyebrow">How it works</p>
+          <h2>Paste a destination. Copy the link.</h2>
+        </div>
+        <div class="steps">
+          <article class="step">
+            <span class="step-number">1</span>
+            <h3>Paste the target</h3>
+            <p>Start with the page you want visitors to reach.</p>
+            <code>https://example.com/callback</code>
+          </article>
+          <article class="step">
+            <span class="step-number">2</span>
+            <h3>Copy the link</h3>
+            <p>Redirect Bridge turns it into a shareable redirect link.</p>
+            <code id="step-url">Generated from this site</code>
+          </article>
+          <article class="step">
+            <span class="step-number">3</span>
+            <h3>Use it where needed</h3>
+            <p>Add it to callback settings, docs, demos, or test flows.</p>
+            <code>Opens the target URL</code>
+          </article>
+        </div>
+      </section>
+
+      <section id="use-cases" class="section examples" aria-label="Redirect Bridge use cases">
+        <div class="section-heading">
+          <p class="eyebrow">Use cases</p>
+          <h2>For the little redirect tasks that keep showing up.</h2>
+        </div>
+        <div class="use-case-list">
+          <article>
+            <h3>Callback URLs</h3>
+            <p>Create callback links for OAuth examples, webhook demos, or product docs.</p>
+          </article>
+          <article>
+            <h3>Local development</h3>
+            <p>Generate links to localhost targets when a tool needs a full URL.</p>
+          </article>
+          <article>
+            <h3>Demos and docs</h3>
+            <p>Show redirect examples clearly without adding a backend.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="service" class="section split">
+        <div class="section-heading">
+          <p class="eyebrow">Service</p>
+          <h2>Small by design.</h2>
+          <p>
+            Redirect Bridge keeps the landing page available when no target is provided,
+            then opens the target URL when a redirect link is used.
+          </p>
+        </div>
+      </section>
+
+      <section id="open-source" class="section open-source">
+        <div class="section-heading">
+          <p class="eyebrow">Open source</p>
+          <h2>Open source and easy to inspect.</h2>
+          <p>
+            The redirect logic is intentionally small, so contributors can review it,
+            report issues, and suggest improvements.
+          </p>
+          <a class="source-link" id="source-link" href="#" aria-label="View Redirect Bridge source code">
+            View source
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>Redirect Bridge is released under the MIT License.</p>
+    </footer>
+  </body>
+</html>

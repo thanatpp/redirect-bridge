@@ -52,13 +52,15 @@ Build output directory: .
 Deploy command: leave empty
 ```
 
-Do not use:
+Do not set a deploy command such as:
 
 ```bash
+npm run deploy:pages
 npx wrangler deploy
+npx wrangler pages deploy . --project-name redirect
 ```
 
-That command is for Cloudflare Workers and will fail because this project has no Worker entry point.
+When this repository is connected to Cloudflare Pages, Cloudflare deploys the static output automatically. Running Wrangler inside the Pages build can fail with API token permission errors.
 
 Suggested Cloudflare Pages project name:
 
@@ -66,16 +68,10 @@ Suggested Cloudflare Pages project name:
 redirect
 ```
 
-You can also deploy with Wrangler:
+Only use Wrangler from your own machine if you are doing a manual deploy:
 
 ```bash
 npx wrangler pages deploy . --project-name redirect
-```
-
-Or through npm:
-
-```bash
-npm run deploy:pages
 ```
 
 The `_redirects` file contains the fallback rule:

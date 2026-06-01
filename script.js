@@ -7,7 +7,7 @@
   var output = document.getElementById("generated-url");
   var copyButton = document.getElementById("copy-button");
   var sourceLink = document.getElementById("source-link");
-  var sourceUrl = "#";
+  var sourceUrl = "https://github.com/thanatpp/redirect-bridge";
 
   function baseUrl() {
     return window.location.origin + "/";

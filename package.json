@@ -3,6 +3,6 @@
   "version": "0.1.0",
   "private": false,
   "scripts": {
-    "deploy:pages": "npx wrangler pages deploy . --project-name redirect-bridge"
+    "deploy:pages": "npx wrangler pages deploy . --project-name redirect"
   }
 }

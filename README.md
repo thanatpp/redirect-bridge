@@ -4,6 +4,8 @@ An open-source URL redirect service.
 
 Redirect Bridge lets visitors place a full `http://` or `https://` URL after the service domain and redirect instantly. The hosted website is operated as the public service, while the source code stays open for transparency, review, and community contributions.
 
+Demo: [redirect.thanatsukantatoon.workers.dev](https://redirect.thanatsukantatoon.workers.dev/)
+
 ## Features
 
 - Static HTML, CSS, and JavaScript
@@ -21,7 +23,7 @@ Redirect Bridge lets visitors place a full `http://` or `https://` URL after the
 Append the destination URL after the Redirect Bridge domain.
 
 ```text
-<redirect-bridge-origin>/https://example.com/callback
+https://redirect.thanatsukantatoon.workers.dev/https://example.com/callback
 ```
 
 The static fallback route sends all paths to `index.html`. The JavaScript reads the current path, validates the target protocol, and redirects immediately.
@@ -29,9 +31,9 @@ The static fallback route sends all paths to `index.html`. The JavaScript reads 
 ## Examples
 
 ```text
-<redirect-bridge-origin>/https://example.com/callback
-<redirect-bridge-origin>/http://localhost:3000/callback
-<redirect-bridge-origin>/https%3A%2F%2Fexample.com%2Fcallback
+https://redirect.thanatsukantatoon.workers.dev/https://example.com/callback
+https://redirect.thanatsukantatoon.workers.dev/http://localhost:3000/callback
+https://redirect.thanatsukantatoon.workers.dev/https%3A%2F%2Fexample.com%2Fcallback
 ```
 
 Invalid targets such as `javascript:alert(1)` are rejected.
@@ -61,13 +63,13 @@ That command is for Cloudflare Workers and will fail because this project has no
 Suggested Cloudflare Pages project name:
 
 ```text
-redirect-bridge
+redirect
 ```
 
 You can also deploy with Wrangler:
 
 ```bash
-npx wrangler pages deploy . --project-name redirect-bridge
+npx wrangler pages deploy . --project-name redirect
 ```
 
 Or through npm:

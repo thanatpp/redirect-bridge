@@ -1,7 +1,7 @@
-name = "redirect-bridge"
+name = 'redirect'
 pages_build_output_dir = "."
 compatibility_date = "2026-06-01"
 
 # This project is a Cloudflare Pages site, not a Worker.
-# Use `wrangler pages deploy . --project-name redirect-bridge`.
+# Use `wrangler pages deploy . --project-name redirect`.
 # Do not use `wrangler deploy`, which expects a Worker entry point.

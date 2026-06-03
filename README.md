@@ -42,9 +42,30 @@ Invalid targets such as `javascript:alert(1)` are rejected.
 
 This section is for project maintainers. End users do not need to deploy their own copy to use the public Redirect Bridge service.
 
-Use **Cloudflare Pages**, not Workers.
+Deployment runs through **GitHub Actions** using Wrangler for Cloudflare Pages.
 
-Cloudflare Pages settings:
+Required GitHub repository secrets:
+
+```text
+CLOUDFLARE_API_TOKEN
+CLOUDFLARE_ACCOUNT_ID
+```
+
+The workflow deploys on every push to `main` and can also be triggered manually from the Actions tab.
+
+Cloudflare Pages project name:
+
+```text
+redirect
+```
+
+The deploy command used by the workflow is:
+
+```bash
+npx wrangler pages deploy . --project-name redirect --branch main
+```
+
+If the repository is also connected directly in the Cloudflare Pages dashboard, keep its build settings empty to avoid double deploys:
 
 ```text
 Build command: leave empty
@@ -52,26 +73,10 @@ Build output directory: .
 Deploy command: leave empty
 ```
 
-Do not set a deploy command such as:
+Do not use Workers deploy commands for this project:
 
 ```bash
-npm run deploy:pages
 npx wrangler deploy
-npx wrangler pages deploy . --project-name redirect
-```
-
-When this repository is connected to Cloudflare Pages, Cloudflare deploys the static output automatically. Running Wrangler inside the Pages build can fail with API token permission errors.
-
-Suggested Cloudflare Pages project name:
-
-```text
-redirect
-```
-
-Only use Wrangler from your own machine if you are doing a manual deploy:
-
-```bash
-npx wrangler pages deploy . --project-name redirect
 ```
 
 The `_redirects` file contains the fallback rule:

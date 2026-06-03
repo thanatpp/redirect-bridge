@@ -19,8 +19,8 @@
       content="Create simple redirect links for callbacks, local development, demos, and quick testing."
     >
     <meta property="og:site_name" content="Redirect Bridge">
-    <meta property="og:url" content="https://redirect.thanatsukantatoon.workers.dev/">
-    <meta property="og:image" content="https://redirect.thanatsukantatoon.workers.dev/assets/social-preview.png">
+    <meta property="og:url" content="https://redirect-df7.pages.dev/">
+    <meta property="og:image" content="https://redirect-df7.pages.dev/assets/social-preview.jpg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta name="twitter:card" content="summary_large_image">
@@ -29,10 +29,43 @@
       name="twitter:description"
       content="Paste a target URL and copy a simple redirect link."
     >
-    <meta name="twitter:image" content="https://redirect.thanatsukantatoon.workers.dev/assets/social-preview.png">
-    <link rel="canonical" href="https://redirect.thanatsukantatoon.workers.dev/">
+    <meta name="twitter:image" content="https://redirect-df7.pages.dev/assets/social-preview.jpg">
+    <link rel="canonical" href="https://redirect-df7.pages.dev/">
     <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
-    <link rel="preload" href="/assets/hero-redirect-flow.png" as="image">
+    <script>
+      (function () {
+        var rawTarget = window.location.pathname + window.location.search;
+
+        if (!rawTarget || rawTarget === "/" || rawTarget === "/index.html") {
+          return;
+        }
+
+        rawTarget = rawTarget.replace(/^\/+/, "");
+
+        if (window.location.hash) {
+          rawTarget += window.location.hash;
+        }
+
+        if (!/^https?:\/\//i.test(rawTarget)) {
+          try {
+            rawTarget = decodeURIComponent(rawTarget);
+          } catch (error) {
+            return;
+          }
+        }
+
+        try {
+          var targetUrl = new URL(rawTarget);
+
+          if (targetUrl.protocol === "http:" || targetUrl.protocol === "https:") {
+            window.location.replace(rawTarget);
+          }
+        } catch (error) {
+          return;
+        }
+      })();
+    </script>
+    <link rel="preload" href="/assets/hero-redirect-flow.webp" as="image" type="image/webp" fetchpriority="high">
     <link rel="stylesheet" href="/styles.css">
     <script type="application/ld+json">
       {
@@ -61,7 +94,7 @@
   <body>
     <header class="site-header">
       <a class="brand" href="/" aria-label="Redirect Bridge home">
-        <span class="brand-mark" aria-hidden="true">R</span>
+        <img class="brand-logo" src="/assets/logo.png" alt="" width="34" height="34" decoding="async" aria-hidden="true">
         <span>Redirect Bridge</span>
       </a>
       <nav aria-label="Main navigation">
@@ -91,22 +124,32 @@
                 inputmode="url"
                 value="https://example.com/callback"
                 autocomplete="url"
+                autocapitalize="none"
+                spellcheck="false"
+                enterkeyhint="done"
+                aria-describedby="generated-url"
               >
             </div>
             <div class="result-row">
               <code id="generated-url">Your redirect link will appear here</code>
               <button class="copy-button" id="copy-button" type="button">Copy</button>
+              <span class="copy-status" id="copy-status" role="status" aria-live="polite"></span>
             </div>
           </form>
         </div>
 
         <figure class="hero-asset">
-          <img
-            src="/assets/hero-redirect-flow.png"
-            alt="Minimal 3D redirect flow showing one browser window routing to another"
-            width="1717"
-            height="916"
-          >
+          <picture>
+            <source srcset="/assets/hero-redirect-flow.webp" type="image/webp">
+            <img
+              src="/assets/hero-redirect-flow.jpg"
+              alt="Minimal 3D redirect flow showing one browser window routing to another"
+              width="1400"
+              height="747"
+              fetchpriority="high"
+              decoding="async"
+            >
+          </picture>
         </figure>
       </section>
 

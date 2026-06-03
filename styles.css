@@ -13,6 +13,12 @@ html {
   scroll-behavior: smooth;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
 body {
   margin: 0;
   background:
@@ -54,18 +60,12 @@ nav {
   text-decoration: none;
 }
 
-.brand-mark {
-  display: grid;
+.brand-logo {
   width: 34px;
   height: 34px;
-  place-items: center;
-  border: 1px solid rgba(15, 118, 110, 0.22);
   border-radius: 8px;
-  background: rgba(255, 255, 255, 0.82);
-  box-shadow: inset 0 1px 0 #ffffff, 0 12px 24px rgba(15, 118, 110, 0.08);
-  color: #0f766e;
-  font-size: 0.95rem;
-  font-weight: 800;
+  box-shadow: 0 12px 24px rgba(15, 118, 110, 0.12);
+  object-fit: cover;
 }
 
 nav {
@@ -83,6 +83,14 @@ nav a {
 nav a:hover {
   background: #edf8f5;
   color: #0f766e;
+}
+
+nav a:focus-visible,
+input:focus-visible,
+.copy-button:focus-visible,
+.source-link:focus-visible {
+  outline: 3px solid rgba(15, 118, 110, 0.28);
+  outline-offset: 3px;
 }
 
 .hero {
@@ -193,8 +201,19 @@ input:focus {
 }
 
 .result-row {
+  position: relative;
   grid-template-columns: minmax(0, 1fr) auto;
   align-items: stretch;
+}
+
+.copy-status {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
 }
 
 .copy-button,
@@ -245,12 +264,16 @@ input:focus {
   content: "";
 }
 
+.hero-asset picture {
+  display: block;
+}
+
 .hero-asset img {
   position: relative;
   display: block;
   width: 100%;
   height: auto;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 1400 / 747;
   object-fit: cover;
   border: 1px solid rgba(15, 118, 110, 0.12);
   border-radius: 8px;
@@ -281,6 +304,14 @@ code {
 .section {
   padding: 76px 0;
   border-top: 1px solid #e5eeec;
+}
+
+@supports (content-visibility: auto) {
+  .section,
+  .site-footer {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 420px;
+  }
 }
 
 .section-heading {

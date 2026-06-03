@@ -6,6 +6,7 @@
   var input = document.getElementById("target-url");
   var output = document.getElementById("generated-url");
   var copyButton = document.getElementById("copy-button");
+  var copyStatus = document.getElementById("copy-status");
   var sourceLink = document.getElementById("source-link");
   var sourceUrl = "https://github.com/thanatpp/redirect-bridge";
 
@@ -56,8 +57,17 @@
 
     function markCopied() {
       copyButton.textContent = "Copied";
+
+      if (copyStatus) {
+        copyStatus.textContent = "Redirect URL copied.";
+      }
+
       window.setTimeout(function () {
         copyButton.textContent = "Copy";
+
+        if (copyStatus) {
+          copyStatus.textContent = "";
+        }
       }, 1400);
     }
 

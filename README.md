@@ -62,7 +62,16 @@ redirect
 The deploy command used by the workflow is:
 
 ```bash
-npx wrangler@latest pages deploy . --project-name=redirect --branch=main
+npx wrangler pages deploy . --project-name=redirect
+```
+
+The workflow follows Cloudflare's Direct Upload with GitHub Actions guide:
+
+```yaml
+uses: cloudflare/wrangler-action@v3
+with:
+  command: pages deploy . --project-name=redirect
+  gitHubToken: ${{ secrets.GITHUB_TOKEN }}
 ```
 
 If the repository is also connected directly in the Cloudflare Pages dashboard, keep its build settings empty to avoid double deploys:

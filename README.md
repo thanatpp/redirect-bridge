@@ -62,7 +62,7 @@ redirect
 The deploy command used by the workflow is:
 
 ```bash
-npx wrangler pages deploy . --project-name redirect --branch main
+npx wrangler@latest pages deploy . --project-name=redirect --branch=main
 ```
 
 If the repository is also connected directly in the Cloudflare Pages dashboard, keep its build settings empty to avoid double deploys:

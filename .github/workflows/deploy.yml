@@ -17,10 +17,18 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6
 
+      - name: Ensure Pages project exists
+        uses: cloudflare/wrangler-action@v3
+        continue-on-error: true
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages project create redirect --production-branch=main
+
       - name: Deploy
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy . --project-name=redirect
+          command: pages deploy . --project-name=redirect --commit-dirty=true
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}

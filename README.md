@@ -62,7 +62,7 @@ redirect
 The deploy command used by the workflow is:
 
 ```bash
-npx wrangler pages deploy . --project-name=redirect
+npx wrangler pages deploy . --project-name=redirect --commit-dirty=true
 ```
 
 The workflow follows Cloudflare's Direct Upload with GitHub Actions guide:
@@ -70,9 +70,17 @@ The workflow follows Cloudflare's Direct Upload with GitHub Actions guide:
 ```yaml
 uses: cloudflare/wrangler-action@v3
 with:
-  command: pages deploy . --project-name=redirect
+  command: pages deploy . --project-name=redirect --commit-dirty=true
   gitHubToken: ${{ secrets.GITHUB_TOKEN }}
 ```
+
+The workflow also tries to create the Pages project first:
+
+```bash
+npx wrangler pages project create redirect --production-branch=main
+```
+
+If the project already exists, that setup step is allowed to fail and the deploy step continues.
 
 If the repository is also connected directly in the Cloudflare Pages dashboard, keep its build settings empty to avoid double deploys:
 
